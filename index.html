@@ -1,182 +1,397 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estratégia Abril 2026 | YMOB & Buddha Spa</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --vinho: #4A0E0E;
-            --dourado: #C5A059;
-            --branco: #FFFFFF;
-            --preto-esfumado: rgba(0, 0, 0, 0.95);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calendário Estratégico 2026 — YMOB</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black:    #0D0D0D;
+    --white:    #FFFFFF;
+    --offwhite: #FBF8FC;
+    --lilac:    #F5EEF8;
+    --lilac2:   #EDCEED;
+    --lilac3:   #E1ADE1;
+    --lilac4:   #DE8FDE;
+    --lilac5:   #B85AB8;
+    --gray:     #888888;
+    --gray-lt:  #E2E2E2;
+    --c-moda:     #0D0D0D;
+    --c-atacado:  #5A3A7A;
+    --c-estetica: #DE8FDE;
+    --c-ecom:     #B85AB8;
+    --c-ambos:    #E1ADE1;
+  }
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { background:var(--offwhite); color:var(--black); font-family:'Inter',sans-serif; font-weight:300; }
 
-        html { scroll-behavior: smooth; }
+  /* HEADER */
+  header { background:var(--black); color:var(--white); padding:52px 64px 44px; position:relative; overflow:hidden; }
+  header::before { content:''; position:absolute; top:-60px; right:-60px; width:300px; height:300px; border-radius:50%; background:radial-gradient(circle,rgba(222,143,222,.15) 0%,transparent 70%); }
+  .header-inner { display:grid; grid-template-columns:1fr auto; gap:40px; align-items:end; position:relative; z-index:1; }
+  .header-eyebrow { font-size:10px; letter-spacing:5px; text-transform:uppercase; color:var(--lilac3); margin-bottom:14px; font-weight:500; }
+  .header-title { font-family:'Cormorant Garamond',serif; font-size:48px; font-weight:300; line-height:1.05; color:var(--white); }
+  .header-title em { font-style:italic; color:var(--lilac3); }
+  .header-sub { margin-top:16px; font-size:12.5px; color:rgba(255,255,255,.45); line-height:1.7; max-width:560px; }
+  .header-ano { font-family:'Cormorant Garamond',serif; font-size:110px; font-weight:700; color:rgba(222,143,222,.07); line-height:1; letter-spacing:-4px; user-select:none; }
 
-        body, html {
-            margin: 0; padding: 0;
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--branco);
-            color: #333; overflow-x: hidden;
-        }
+  /* LEGENDA */
+  .legenda { background:var(--white); padding:13px 64px; display:flex; align-items:center; gap:20px; border-bottom:1px solid var(--gray-lt); flex-wrap:wrap; }
+  .legenda-item { font-size:10px; letter-spacing:1px; text-transform:uppercase; font-weight:500; display:flex; align-items:center; gap:7px; color:#555; }
+  .dot { width:9px; height:9px; border-radius:50%; flex-shrink:0; }
+  .dot-moda     { background:var(--c-moda); }
+  .dot-atacado  { background:var(--c-atacado); }
+  .dot-estetica { background:var(--c-estetica); }
+  .dot-ecom     { background:var(--c-ecom); }
+  .dot-ambos    { background:var(--c-ambos); border:1px solid #ccc; }
+  .tag-prio-leg { font-size:9px; letter-spacing:1px; text-transform:uppercase; background:var(--lilac3); color:var(--black); padding:2px 8px; border-radius:20px; font-weight:600; }
 
-        /* Moldura de Design: Borda Inferior Esfumada Fixa */
-        .footer-glow {
-            position: fixed; bottom: 0; left: 0; width: 100%; height: 150px;
-            background: linear-gradient(to top, var(--preto-esfumado) 0%, rgba(0,0,0,0) 100%);
-            z-index: 100; pointer-events: none;
-        }
+  /* FILTROS */
+  .filtros-wrap { padding:13px 64px; display:flex; align-items:center; gap:8px; background:var(--offwhite); border-bottom:1px solid var(--gray-lt); flex-wrap:wrap; }
+  .filtros-label { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--gray); font-weight:500; margin-right:4px; }
+  .btn-filtro { padding:6px 17px; border-radius:40px; border:1px solid var(--gray-lt); background:var(--white); font-family:'Inter',sans-serif; font-size:10px; letter-spacing:1px; text-transform:uppercase; cursor:pointer; transition:all .2s; color:#555; font-weight:500; }
+  .btn-filtro:hover { border-color:var(--lilac4); color:var(--lilac5); }
+  .btn-filtro.ativo { background:var(--black); color:var(--white); border-color:var(--black); }
+  .btn-filtro[data-filtro="moda"].ativo     { background:var(--c-moda); border-color:var(--c-moda); }
+  .btn-filtro[data-filtro="atacado"].ativo  { background:var(--c-atacado); border-color:var(--c-atacado); }
+  .btn-filtro[data-filtro="estetica"].ativo { background:var(--c-estetica); border-color:var(--c-estetica); color:var(--black); }
+  .btn-filtro[data-filtro="ecom"].ativo     { background:var(--c-ecom); border-color:var(--c-ecom); }
+  .btn-filtro[data-filtro="prioridade"].ativo { background:var(--black); color:var(--lilac3); }
 
-        section {
-            min-height: 100vh; display: flex; flex-direction: column;
-            justify-content: center; align-items: center;
-            padding: 80px 10%; box-sizing: border-box; position: relative;
-        }
+  /* ALERTA BRÁS */
+  .alerta-bras { margin:18px 64px 0; background:var(--black); border-left:3px solid var(--lilac4); padding:13px 20px; border-radius:0 4px 4px 0; display:flex; align-items:flex-start; gap:13px; }
+  .alerta-bras-icon { font-size:17px; flex-shrink:0; margin-top:1px; }
+  .alerta-bras-text { font-size:11.5px; color:rgba(255,255,255,.65); line-height:1.65; }
+  .alerta-bras-text strong { color:var(--lilac3); }
 
-        .ymob-badge {
-            position: absolute; top: 40px; right: 10%;
-            font-size: 0.7rem; letter-spacing: 5px; color: var(--dourado);
-            border-bottom: 1px solid var(--dourado); padding-bottom: 5px;
-        }
+  /* CONTAINER */
+  .container { padding:28px 64px 80px; }
 
-        h1, h2 { font-family: 'Cinzel', serif; text-align: center; color: var(--vinho); margin-bottom: 20px; }
-        .title-main { font-size: 3.5rem; letter-spacing: 12px; margin: 0; }
-        .subtitle { font-size: 0.9rem; color: var(--dourado); letter-spacing: 5px; text-transform: uppercase; margin-bottom: 10px; }
+  /* GRID */
+  .grid-meses { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:var(--gray-lt); border:1px solid var(--gray-lt); margin-top:28px; }
+  .mes-card { background:var(--white); overflow:hidden; }
+  .mes-header { padding:13px 20px 11px; background:var(--black); display:flex; justify-content:space-between; align-items:center; }
+  .mes-nome { font-family:'Cormorant Garamond',serif; font-size:17px; font-weight:600; color:var(--white); }
+  .mes-num { font-size:9px; letter-spacing:3px; color:var(--lilac3); text-transform:uppercase; font-weight:500; }
+  .mes-body { padding:6px 0 8px; }
 
-        /* Grid de Estratégia */
-        .grid-plan {
-            display: grid; grid-template-columns: repeat(2, 1fr);
-            gap: 25px; margin-top: 40px; width: 100%;
-        }
+  /* DATA ITEM */
+  .data-item { display:flex; gap:12px; padding:9px 20px; border-left:2px solid transparent; transition:background .12s; align-items:flex-start; }
+  .data-item+.data-item { border-top:1px solid #F5F5F5; }
+  .data-item:hover { background:#FAFAFA; }
+  .data-item.n-moda     { border-left-color:var(--c-moda); }
+  .data-item.n-atacado  { border-left-color:var(--c-atacado); }
+  .data-item.n-estetica { border-left-color:var(--c-estetica); }
+  .data-item.n-ecom     { border-left-color:var(--c-ecom); }
+  .data-item.n-ambos    { border-left-color:var(--c-ambos); }
+  .data-item.destaque   { background:#FBF2FB; }
+  .data-item.destaque:hover { background:#F5E8F5; }
+  .data-dia { font-family:'Cormorant Garamond',serif; font-size:12px; font-weight:600; color:var(--gray); min-width:34px; padding-top:1px; flex-shrink:0; line-height:1.3; }
+  .data-info { flex:1; min-width:0; }
+  .data-nome { font-size:12px; font-weight:500; color:var(--black); display:flex; align-items:center; gap:5px; line-height:1.3; flex-wrap:wrap; }
+  .tag-prio  { font-size:8px; letter-spacing:1px; text-transform:uppercase; background:var(--lilac3); color:var(--black); padding:1px 6px; border-radius:20px; font-weight:600; white-space:nowrap; }
+  .tag-bras  { font-size:8px; letter-spacing:1px; text-transform:uppercase; background:var(--c-atacado); color:#fff; padding:1px 6px; border-radius:20px; font-weight:600; white-space:nowrap; }
+  .tag-ecom  { font-size:8px; letter-spacing:1px; text-transform:uppercase; background:var(--c-ecom); color:#fff; padding:1px 6px; border-radius:20px; font-weight:600; white-space:nowrap; }
+  .data-nicho { font-size:10px; color:var(--gray); margin-top:2px; }
+  .data-hint  { font-family:'Cormorant Garamond',serif; font-size:12.5px; font-style:italic; color:#666; margin-top:4px; line-height:1.5; }
 
-        .card {
-            border: 1px solid #f0f0f0; padding: 30px;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            background: #fff; position: relative;
-        }
+  /* INSIGHTS */
+  .sec-title { font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:400; margin-bottom:6px; }
+  .sec-title em { font-style:italic; color:var(--lilac5); }
+  .sec-sub { font-size:12px; color:var(--gray); margin-bottom:22px; }
+  .insights-wrap { margin-top:52px; }
+  .grid-insights { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
+  .insight-card { background:var(--white); border:1px solid var(--gray-lt); padding:22px; position:relative; transition:border-color .2s,box-shadow .2s; }
+  .insight-card:hover { border-color:var(--lilac3); box-shadow:0 4px 20px rgba(222,143,222,.1); }
+  .insight-card.dark  { background:var(--black); border-color:var(--black); }
+  .insight-card.lilac { background:var(--lilac); border-color:var(--lilac2); }
+  .insight-num { font-family:'Cormorant Garamond',serif; font-size:44px; font-weight:700; color:rgba(0,0,0,.04); line-height:1; position:absolute; top:14px; right:18px; }
+  .insight-card.dark .insight-num { color:rgba(255,255,255,.04); }
+  .insight-card h4 { font-family:'Cormorant Garamond',serif; font-size:15px; font-weight:600; margin-bottom:9px; color:var(--black); line-height:1.3; }
+  .insight-card.dark h4 { color:var(--lilac3); }
+  .insight-card.lilac h4 { color:var(--lilac5); }
+  .insight-card p { font-size:12px; line-height:1.7; color:#555; font-weight:300; }
+  .insight-card.dark p { color:rgba(255,255,255,.5); }
 
-        .card:hover { border-color: var(--dourado); transform: translateY(-10px); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+  /* TABELA */
+  .tabela-wrap { margin-top:40px; }
+  .tabela { width:100%; border-collapse:collapse; font-size:12px; }
+  .tabela th { background:var(--black); color:var(--lilac3); padding:11px 16px; text-align:left; font-size:9.5px; letter-spacing:2px; text-transform:uppercase; font-weight:500; }
+  .tabela td { padding:10px 16px; border-bottom:1px solid var(--gray-lt); color:#444; line-height:1.5; vertical-align:top; }
+  .tabela tr:hover td { background:var(--lilac); }
+  .tabela td:first-child { font-weight:500; color:var(--black); }
+  .tabela td:last-child { font-style:italic; color:#666; font-family:'Cormorant Garamond',serif; font-size:13px; }
 
-        .card h3 {
-            font-family: 'Cinzel', serif; color: var(--vinho); font-size: 0.85rem;
-            margin-top: 0; letter-spacing: 1px; border-bottom: 1px solid #eee; padding-bottom: 10px;
-        }
+  /* SERVIÇOS */
+  .servicos-wrap { margin-top:40px; }
+  .grid-servicos { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .serv-card { border:1px solid var(--gray-lt); background:var(--white); padding:20px; position:relative; transition:border-color .2s,box-shadow .2s; }
+  .serv-card:hover { border-color:var(--lilac3); box-shadow:0 4px 20px rgba(222,143,222,.1); }
+  .serv-card.dark { background:var(--black); border-color:var(--black); }
+  .serv-card.lilac-bg { background:var(--lilac); border-color:var(--lilac2); }
+  .serv-n { font-family:'Cormorant Garamond',serif; font-size:40px; font-weight:700; color:rgba(0,0,0,.04); line-height:1; margin-bottom:12px; }
+  .serv-card.dark .serv-n { color:rgba(255,255,255,.04); }
+  .serv-card h4 { font-family:'Cormorant Garamond',serif; font-size:14px; font-weight:600; margin-bottom:7px; line-height:1.3; color:var(--black); }
+  .serv-card.dark h4 { color:var(--lilac3); }
+  .serv-card.lilac-bg h4 { color:var(--lilac5); }
+  .serv-card p { font-size:11.5px; line-height:1.65; color:#555; font-weight:300; }
+  .serv-card.dark p { color:rgba(255,255,255,.48); }
 
-        .card p { font-size: 0.75rem; line-height: 1.6; color: #666; margin-bottom: 5px; }
-        .card .tag { font-size: 0.65rem; color: var(--dourado); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+  /* FOOTER */
+  footer { margin-top:60px; padding:22px 64px; border-top:1px solid var(--gray-lt); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; }
+  .footer-brand { font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:700; letter-spacing:4px; color:var(--black); }
+  .footer-brand span { color:var(--lilac4); }
+  .footer-copy { font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:var(--gray); }
 
-        .highlight-box {
-            background-color: #fcfcfc; padding: 60px; border: 1px solid #f0f0f0;
-            text-align: center; max-width: 850px;
-        }
-
-        .footer-text {
-            position: fixed; bottom: 30px; width: 100%; text-align: center;
-            color: var(--branco); z-index: 101; font-size: 0.65rem;
-            letter-spacing: 3px; font-weight: 200; text-transform: uppercase;
-        }
-
-        .cta-button {
-            margin-top: 40px; padding: 18px 45px; border: 1px solid var(--vinho);
-            background: transparent; color: var(--vinho); font-family: 'Cinzel', serif;
-            font-size: 0.8rem; letter-spacing: 2px; cursor: pointer;
-            transition: 0.4s; text-decoration: none;
-        }
-
-        .cta-button:hover { background: var(--vinho); color: var(--branco); }
-
-        .ancora-list { width: 100%; max-width: 800px; margin-top: 30px; text-align: left; }
-        .ancora-item { margin-bottom: 20px; border-left: 2px solid var(--dourado); padding-left: 20px; }
-        .ancora-item strong { font-family: 'Cinzel'; color: var(--vinho); display: block; margin-bottom: 5px; }
-
-        @media (max-width: 768px) {
-            .grid-plan { grid-template-columns: 1fr; }
-            .title-main { font-size: 2.2rem; }
-        }
-    </style>
+  @media(max-width:960px){
+    header,.legenda,.filtros-wrap,.container,footer{padding-left:20px;padding-right:20px;}
+    .alerta-bras{margin-left:20px;margin-right:20px;}
+    .grid-meses{grid-template-columns:repeat(2,1fr);}
+    .grid-insights,.grid-servicos{grid-template-columns:1fr;}
+    .header-ano{display:none;}
+  }
+  @media(max-width:560px){.grid-meses{grid-template-columns:1fr;}}
+</style>
 </head>
 <body>
 
-    <div class="footer-glow"></div>
-    <div class="footer-text">ESTRATÉGIA EXCLUSIVA | BUDDHA SPA CHÁCARA KLABIN | MILENE</div>
+<header>
+  <div class="header-inner">
+    <div>
+      <div class="header-eyebrow">Y<span style="color:var(--lilac4)">M</span>OB · Your Media, Our Business</div>
+      <h1 class="header-title">Calendário Estratégico<br><em>2026</em></h1>
+      <p class="header-sub">Moda · Atacado · Brás · Estética · Wellness · E-commerce brasileiro — datas, giro de estoque, comportamento de compra e ativação por nicho.</p>
+    </div>
+    <div class="header-ano">2026</div>
+  </div>
+</header>
 
-    <section>
-        <div class="ymob-badge">YMOB STRATEGY</div>
-        <p class="subtitle">Planejamento Tático</p>
-        <h1 class="title-main">ABRIL 2026</h1>
-        <div style="width: 60px; height: 1px; background: var(--dourado); margin: 30px 0;"></div>
-        <p style="font-weight: 200; letter-spacing: 3px; font-size: 1.1rem;">"A Natureza do Cuidado: Do solo ao toque."</p>
-        <a href="#conceito" class="cta-button">Ver Planejamento Completo</a>
-    </section>
+<div class="legenda">
+  <div class="legenda-item"><span class="dot dot-moda"></span>Moda / Varejo</div>
+  <div class="legenda-item"><span class="dot dot-atacado"></span>Atacado / Brás</div>
+  <div class="legenda-item"><span class="dot dot-estetica"></span>Estética / Wellness</div>
+  <div class="legenda-item"><span class="dot dot-ecom"></span>E-commerce BR</div>
+  <div class="legenda-item"><span class="dot dot-ambos"></span>Todos os nichos</div>
+  <div class="legenda-item"><span class="tag-prio-leg">★ prioritária</span></div>
+</div>
 
-    <section id="conceito" style="background-color: #fafafa;">
-        <h2 class="subtitle">Conceito Editorial</h2>
-        <div class="highlight-box">
-            <p style="font-size: 1.3rem; line-height: 1.9; font-weight: 300; margin-bottom: 20px;">
-                Focaremos em um bem-estar <strong>orgânico e sustentável</strong>. <br>
-                Saindo da doçura da Páscoa para a consciência do Dia da Terra, 
-                preparando o solo para o desejo do Dia das Mães.
-            </p>
-            <p style="font-size: 0.8rem; color: var(--dourado); letter-spacing: 2px; text-transform: uppercase;">Bússola: O luxo do presente consciente.</p>
-        </div>
-    </section>
+<div class="filtros-wrap">
+  <span class="filtros-label">Filtrar:</span>
+  <button class="btn-filtro ativo" data-filtro="todos">Todos</button>
+  <button class="btn-filtro" data-filtro="moda">Moda / Varejo</button>
+  <button class="btn-filtro" data-filtro="atacado">Atacado / Brás</button>
+  <button class="btn-filtro" data-filtro="estetica">Estética / Wellness</button>
+  <button class="btn-filtro" data-filtro="ecom">E-commerce</button>
+  <button class="btn-filtro" data-filtro="ambos">Todos os nichos</button>
+  <button class="btn-filtro" data-filtro="prioridade">★ Só Prioritárias</button>
+</div>
 
-    <section>
-        <h2 class="subtitle">Calendário Adaptado</h2>
-        <div class="grid-plan">
-            <div class="card">
-                <span class="tag">Semana 1: Renascimento</span>
-                <h3>Páscoa além do Chocolate</h3>
-                <p>O autocuidado como renovação. Rituais de Banho de Imersão e kits presenteáveis de edição limitada.</p>
-            </div>
-            <div class="card">
-                <span class="tag">Semana 2: Consciência</span>
-                <h3>Dia da Terra (22/04)</h3>
-                <p>Beleza sustentável e ativos naturais. O contraste entre o caos da cidade e o oásis verde da unidade Klabin.</p>
-            </div>
-            <div class="card">
-                <span class="tag">Semana 3: Logística</span>
-                <h3>Frete Grátis (28/04)</h3>
-                <p>Impulso comercial para E-commerce. Antecipação de presentes físicos com conveniência absoluta.</p>
-            </div>
-            <div class="card">
-                <span class="tag">Semana 4: Ensaio</span>
-                <h3>Aquecimento Dia das Mães</h3>
-                <p>A arte de planejar o presente perfeito. Stories focados em listas de desejos (Silêncio e Massagem).</p>
-            </div>
-        </div>
-    </section>
+<div class="alerta-bras">
+  <div class="alerta-bras-icon">💡</div>
+  <div class="alerta-bras-text">
+    <strong>Regra de ouro do Brás:</strong> seu calendário de compra deve estar <strong>30 dias adiantado</strong> ao do consumidor final. Lançamento O/I chega ao Brás em fev/mar → venda em abr/mai. Primavera/Verão chega em agosto → venda em set/out. Alto Verão e Réveillon chegam em out/nov. Domingos e segundas são os dias mais fortes de reposição. <strong>Horário de pico: 02h às 08h.</strong>
+  </div>
+</div>
 
-    <section style="background-color: #fcfcfc;">
-        <h2 class="subtitle">Conteúdos Âncora</h2>
-        <div class="ancora-list">
-            <div class="ancora-item">
-                <strong>1. Cesta de Páscoa Premium (10/04)</strong>
-                <p>Foto editorial substituindo o chocolate pelo bem-estar inesquecível.</p>
-            </div>
-            <div class="ancora-item">
-                <strong>2. Manifesto Eco (22/04)</strong>
-                <p>Reel com narração suave: "Cuidar da terra é cuidar da nossa própria casa."</p>
-            </div>
-            <div class="ancora-item">
-                <strong>3. O Dia do Frete Grátis (28/04)</strong>
-                <p>Carrossel de best-sellers para estoque de Home Care e presentes antecipados.</p>
-            </div>
-        </div>
-    </section>
+<div class="container">
+  <div class="grid-meses" id="gridMeses"></div>
 
-    <section style="background-color: var(--vinho); color: var(--branco);">
-        <h2 class="subtitle" style="color: var(--dourado);">O que não publicar</h2>
-        <ul style="list-style: none; padding: 0; text-align: center; font-weight: 200; line-height: 2.5; letter-spacing: 2px; font-size: 0.85rem;">
-            <li>IMAGENS INFANTIS DE PÁSCOA (COELHOS/DESENHOS)</li>
-            <li>URGÊNCIA AGRESSIVA (GATILHOS DE DESESPERO)</li>
-            <li>POSTS GENÉRICOS DE DATAS COMEMORATIVAS</li>
-            <li>Linguagem Popular: Manter o tom "Prestativo e Sofisticado"</li>
-        </ul>
-        <div style="margin-top: 40px; font-family: 'Cinzel'; font-size: 0.7rem; color: var(--dourado); letter-spacing: 4px;">YMOB × BUDDHA SPA CHÁCARA KLABIN</div>
-    </section>
+  <div class="insights-wrap">
+    <div class="sec-title">Insights de <em>Comportamento BR</em></div>
+    <div class="sec-sub">O que diferencia o e-commerce brasileiro — e como a YMOB ativa cada canal</div>
+    <div class="grid-insights">
+      <div class="insight-card dark">
+        <div class="insight-num">01</div>
+        <h4>WhatsApp como canal de fechamento</h4>
+        <p>No BR, o WhatsApp é onde a venda acontece. Direcione tráfego pago do Instagram Ads para o WhatsApp. Atendimento humanizado para dúvidas de tamanho/tecido aumenta conversão em até 40%. Monte listas VIP segmentadas por nicho antes de cada data prioritária.</p>
+      </div>
+      <div class="insight-card lilac">
+        <div class="insight-num">02</div>
+        <h4>Live Commerce — urgência real em tempo real</h4>
+        <p>O brasileiro passa muito mais tempo em redes sociais que a média global. Instagram Live e TikTok Live com demonstração ao vivo + "Compre agora com o cupom da live" gera urgência absurda. Combine com countdown de estoque e frete grátis para as primeiras compras.</p>
+      </div>
+      <div class="insight-card">
+        <div class="insight-num">03</div>
+        <h4>Prova social contra o "metade do dobro"</h4>
+        <p>O medo de fraude em datas promocionais ainda existe no BR. Use Stories para mostrar bastidores do estoque, preparação dos pacotes, prints de pedidos e depoimentos de clientes reais. Isso constrói autoridade antes da Black Friday e aumenta a conversão da lista VIP.</p>
+      </div>
+      <div class="insight-card dark">
+        <div class="insight-num">04</div>
+        <h4>Micro-influenciadores regionais: maior ROI</h4>
+        <p>O Brasil é continental. Parcerias com micro-influenciadores de nicho ou de cidades específicas têm ROI muito maior que um grande influenciador para e-commerces médios. Para atacado/Brás: influenciadores lojistas que mostram a "viagem de compra" geram autoridade B2B.</p>
+      </div>
+    </div>
+  </div>
 
+  <div class="tabela-wrap">
+    <div class="sec-title" style="margin-bottom:20px">Brasil <em>vs.</em> EUA</div>
+    <table class="tabela">
+      <thead><tr><th>Evento</th><th>EUA</th><th>Brasil</th><th>Estratégia BR para a YMOB</th></tr></thead>
+      <tbody>
+        <tr><td>Dia dos Namorados</td><td>Fevereiro</td><td>12 de junho</td><td>Kits duplos, "Compre para ele e para você", presente com significado, romantismo.</td></tr>
+        <tr><td>Maior promoção do ano</td><td>Black Friday</td><td>Black November inteiro</td><td>Começa dia 1º de novembro. Captação de leads (lista VIP WhatsApp) desde outubro.</td></tr>
+        <tr><td>Data "extra" estratégica</td><td>Memorial Day</td><td>Dia do Consumidor (15/03)</td><td>Semana inteira. Foco em renovação de estoque e fidelização de base de clientes.</td></tr>
+        <tr><td>Fim de ano</td><td>Natal forte</td><td>Natal + Réveillon</td><td>Roupa de Réveillon (branco/dourado) é nicho gigante à parte. Campanha separada do Natal.</td></tr>
+        <tr><td>Parcelamento</td><td>Pouco relevante</td><td>Decisivo na compra</td><td>Sempre comunicar "em X vezes sem juros" — é gatilho de conversão no BR.</td></tr>
+        <tr><td>Canal de vendas</td><td>E-mail reina</td><td>WhatsApp + Instagram</td><td>Funil: Reels/Stories → link WhatsApp → fechamento humanizado no chat.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="servicos-wrap">
+    <div class="sec-title" style="margin-bottom:6px">Como a YMOB vende como <em>serviço recorrente</em></div>
+    <div class="sec-sub">6 modelos de entrega — uso interno + revenda para clientes</div>
+    <div class="grid-servicos">
+      <div class="serv-card dark"><div class="serv-n">01</div><h4>Pacote Mensal de Conteúdo</h4><p>Calendário filtrado por nicho + briefing por data prioritária + copy para feed, stories e WhatsApp. Recorrência mensal com valor fixo.</p></div>
+      <div class="serv-card"><div class="serv-n">02</div><h4>Sprint de Data Prioritária</h4><p>30 dias antes de cada ★★: planejamento, produção, agendamento e relatório. Fechado por projeto — Dia das Mães, Black Friday, Natal.</p></div>
+      <div class="serv-card lilac-bg"><div class="serv-n">03</div><h4>Ativação Brás B2B</h4><p>Conteúdo e campanhas para lojistas que compram no Brás para revender: catálogo digital, comunicação com revendedores, lançamento de coleção.</p></div>
+      <div class="serv-card"><div class="serv-n">04</div><h4>Calendário de Estética Editado</h4><p>Para Lado B CK e wellness: sazonalidade climática, Projeto Verão, Outubro Rosa e datas de nicho para autoridade no Instagram/TikTok.</p></div>
+      <div class="serv-card dark"><div class="serv-n">05</div><h4>Live Commerce & WhatsApp VIP</h4><p>Planejamento e roteiro de lives para datas prioritárias + estrutura de lista VIP no WhatsApp para pré-lançamentos e Black November.</p></div>
+      <div class="serv-card lilac-bg"><div class="serv-n">06</div><h4>Case Lean · Portfólio</h4><p>VSM do fluxo de conteúdo, A3 de melhoria, métricas de conversão por data. Case de eficiência operacional da agência para portfólio Kaieconomia.</p></div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-brand">Y<span>M</span>OB</div>
+    <div class="footer-copy">Calendário Estratégico 2026 · Moda · Atacado · Estética · E-commerce</div>
+  </footer>
+</div>
+
+<script>
+const nichoLabel = {
+  moda:"Moda / Varejo", atacado:"Atacado / Brás", estetica:"Estética / Wellness", ecom:"E-commerce BR", ambos:"Todos os nichos"
+};
+
+const dados = [
+  {mes:"Janeiro",num:"01",datas:[
+    {dia:"todo mês",nome:"Saldões de Verão / Queima de Estoque",nicho:"moda",p:true,bras:false,ecom:true,hint:"Consumidor pagando IPVA/IPTU — descontos agressivos para desovar o restante do Natal. Foco em liquidação sem queimar margem da coleção nova."},
+    {dia:"todo mês",nome:"Detox de Verão",nicho:"estetica",p:false,bras:false,ecom:false,hint:"Drenagem linfática, hidratação pós-sol, tratamentos capilares após praia/piscina. Mês da 'faxina no corpo e na alma'."},
+    {dia:"19/01",nome:"Dia do Cabeleireiro",nicho:"estetica",p:false,bras:false,ecom:false,hint:"Bastidores da equipe, valorização dos profissionais. Conteúdo de autoridade para Instagram/TikTok."},
+    {dia:"2ª qzn",nome:"Volta às Aulas",nicho:"moda",p:true,bras:false,ecom:false,hint:"Vestuário casual, coleção teen/infantil. Atacadistas: abastecer revendedores com 30 dias de antecedência."}
+  ]},
+  {mes:"Fevereiro",num:"02",datas:[
+    {dia:"fev/mar",nome:"Lançamento O/I no Brás",nicho:"atacado",p:true,bras:true,ecom:false,hint:"Coleções Outono/Inverno chegam ao Brás. Garantir estoque agora para vender em abril/maio. Domingos e segundas: dias de reposição mais fortes."},
+    {dia:"14",nome:"Valentine's Day",nicho:"ambos",p:false,bras:false,ecom:true,hint:"Adesão crescente no BR. Kits românticos, skincare a dois, moda íntima. Sempre comunicar o parcelamento."},
+    {dia:"carnaval",nome:"Carnaval — Moda Festa & Beleza Express",nicho:"moda",p:false,bras:false,ecom:true,hint:"E-commerce de físicos cai, mas explode para glitter, fantasia, protetor solar e make de longa duração. Gatilho: 'Entrega antes da folia'."},
+    {dia:"fev",nome:"Glow de Carnaval",nicho:"estetica",p:false,bras:false,ecom:false,hint:"Penteados com brilho, tratamentos express para o rosto ('efeito Cinderela'). Conteúdo de antes/depois para stories."},
+    {dia:"05/02",nome:"Dia do Dermatologista",nicho:"estetica",p:false,bras:false,ecom:false,hint:"Dicas de skincare e parceria com especialistas. Conteúdo de autoridade para capturar público de beleza consciente."}
+  ]},
+  {mes:"Março",num:"03",datas:[
+    {dia:"mar",nome:"Compra O/I no Brás — prazo final",nicho:"atacado",p:true,bras:true,ecom:false,hint:"Última janela para Outono/Inverno. Quem compra agora vende com margem em abril/maio. Também é o momento de limpar o restante do alto verão."},
+    {dia:"08",nome:"Dia Internacional da Mulher + Quinzena do Autocuidado",nicho:"ambos",p:true,bras:false,ecom:true,hint:"Não só o dia 08 — crie a 'Quinzena do Autocuidado'. Uma das datas mais fortes para venda de pacotes de estética e moda feminina."},
+    {dia:"15",nome:"Dia do Consumidor ★★ — Semana inteira",nicho:"ambos",p:true,bras:false,ecom:true,hint:"'Black Friday do 1º semestre'. Semana inteira de ofertas focada em fidelização e recompra. Para moda: limpar restante do verão para abrir espaço para O/I."},
+    {dia:"21/03",nome:"Dia Mundial do Sono",nicho:"estetica",p:false,bras:false,ecom:false,hint:"Conteúdo sobre 'Sono da Beleza', óleos essenciais, rotina noturna de skincare. Autoridade em wellness."},
+    {dia:"20",nome:"Início do Outono",nicho:"ambos",p:false,bras:false,ecom:false,hint:"Moda: transição de coleção. Estética: início da temporada de ácidos, peelings e lasers — período sem exposição solar."},
+    {dia:"31/03",nome:"Dia da Saúde e Nutrição",nicho:"estetica",p:false,bras:false,ecom:false,hint:"Relação entre alimentação e saúde do cabelo/pele. Parceria com nutricionistas para conteúdo de autoridade."}
+  ]},
+  {mes:"Abril",num:"04",datas:[
+    {dia:"variável",nome:"Páscoa ★",nicho:"ambos",p:true,bras:false,ecom:true,hint:"Moda: looks de família, presentes. Beleza: kits presenteáveis, embalagem especial. Estética: depilação e unhas para o feriado."},
+    {dia:"abr/mai",nome:"Temporada de Ácidos e Peelings",nicho:"estetica",p:true,bras:false,ecom:false,hint:"Com queda de temperatura, é o momento ideal para vender tratamentos sem exposição solar. Comunicar: 'Agora é o melhor momento para fazer'."},
+    {dia:"22",nome:"Dia da Terra",nicho:"estetica",p:false,bras:false,ecom:false,hint:"Beleza sustentável, refil, produtos naturais. Branding para marcas eco-conscientes do nicho de autocuidado."},
+    {dia:"28",nome:"Dia do Frete Grátis ★",nicho:"ecom",p:true,bras:false,ecom:true,hint:"Em vez de desconto no produto novo de inverno, ofereça o frete grátis como incentivo final. Data perfeita para alavancar o lançamento da Coleção de Inverno."}
+  ]},
+  {mes:"Maio",num:"05",datas:[
+    {dia:"abr/mai",nome:"Compra para Dia das Mães no Brás",nicho:"atacado",p:true,bras:true,ecom:false,hint:"Lojistas que compram no Brás devem garantir estoque 30 dias antes. Peças presenteáveis, kits, embalagem especial já pedida ao fornecedor."},
+    {dia:"2º dom",nome:"Dia das Mães ★★",nicho:"ambos",p:true,bras:false,ecom:true,hint:"2ª maior data do e-commerce BR. Moda: self-gift feminino. Beleza: kits, sets, gift cards. Estética: 'Dia de Princesa', protocolos noivas/madrinhas. Parcelamento em destaque."},
+    {dia:"mai",nome:"Mês das Noivas e das Mães",nicho:"estetica",p:false,bras:false,ecom:false,hint:"Gift cards e vale-presentes para estética. Protocolos especiais: noivas, madrinhas, mãe da noiva. Comunicação emocional."},
+    {dia:"todo mês",nome:"Aquecimento Dia das Mães",nicho:"moda",p:false,bras:false,ecom:true,hint:"Countdown, bastidores, depoimentos, acesso antecipado VIP via WhatsApp. Lives de styling com os produtos da coleção."}
+  ]},
+  {mes:"Junho",num:"06",datas:[
+    {dia:"12",nome:"Dia dos Namorados ★★",nicho:"ambos",p:true,bras:false,ecom:true,hint:"No BR supera o Valentine's Day. Foco em 'Presente com Significado'. 'Compre para ele e para você' converte muito. Kits duplos, perfumaria, ritual a dois."},
+    {dia:"jun",nome:"Bem-estar no Frio",nicho:"estetica",p:false,bras:false,ecom:false,hint:"Massagens relaxantes, óleos corporais, tratamentos para ressecamento capilar/facial. Conteúdo de autocuidado no inverno."},
+    {dia:"21",nome:"Início do Inverno",nicho:"ambos",p:false,bras:false,ecom:false,hint:"Moda: casacos, malhas, botas. Estética: hidratação corporal intensa, lip care. Estúdios: 'Diagnóstico de Imagem do Inverno'."},
+    {dia:"24",nome:"São João / Festa Junina",nicho:"moda",p:false,bras:false,ecom:false,hint:"Camisas xadrez, vestidos rodados — forte no interior e Nordeste. Segmentar campanha por região."},
+    {dia:"28",nome:"Dia do Orgulho LGBTQIA+",nicho:"ambos",p:false,bras:false,ecom:false,hint:"Campanhas de inclusão com alto engajamento quando autênticas. Moda: coleções especiais. Beleza: make artística."}
+  ]},
+  {mes:"Julho",num:"07",datas:[
+    {dia:"todo mês",nome:"Liquidação de Inverno",nicho:"moda",p:false,bras:false,ecom:true,hint:"Giro de estoque. Conteúdo de urgência: 'últimas peças'. Oportunidade para atacadistas do Brás reabasteceram revendedores antes do fim do inverno."},
+    {dia:"ago",nome:"Lançamento P/V chega ao Brás",nicho:"atacado",p:true,bras:true,ecom:false,hint:"Novidades Primavera/Verão chegam ao Brás a partir de agosto. Garantir estoque agora para lançar em setembro com margem."},
+    {dia:"jul",nome:"Autoestima nas Férias",nicho:"estetica",p:false,bras:false,ecom:false,hint:"Pacote 'Pronta para a viagem': depilação + hidratação + unhas. Procedimentos de manutenção para quem vai viajar."},
+    {dia:"15/07",nome:"Dia do Homem",nicho:"estetica",p:false,bras:false,ecom:false,hint:"Quebra de tabus sobre estética masculina e barbearia. Alto engajamento no TikTok."},
+    {dia:"férias",nome:"Férias Escolares",nicho:"moda",p:false,bras:false,ecom:false,hint:"Para nicho infantil: 'Kit de Atividades' para pais com crianças em casa."}
+  ]},
+  {mes:"Agosto",num:"08",datas:[
+    {dia:"ago",nome:"Compra P/V no Brás — janela principal",nicho:"atacado",p:true,bras:true,ecom:false,hint:"Janela de compra para Primavera/Verão. Quem compra agora lança em setembro com estoque garantido e margem saudável."},
+    {dia:"2º dom",nome:"Dia dos Pais ★",nicho:"ambos",p:true,bras:false,ecom:true,hint:"Moda masculina, perfumaria, tecnologia, churrasco. Estética: kits grooming, cuidado masculino premium. Campanhas iniciam em julho."},
+    {dia:"ago",nome:"Mês da Nutrição e Saúde",nicho:"estetica",p:false,bras:false,ecom:false,hint:"Wellness: bem-estar mental, meditação, suplementação. Parcerias com nutricionistas. Foco em abordagem holística."},
+    {dia:"todo mês",nome:"Back to School",nicho:"moda",p:false,bras:false,ecom:false,hint:"Vestuário teen, looks para o colégio. Conteúdo de styling para o 2º semestre."}
+  ]},
+  {mes:"Setembro",num:"09",datas:[
+    {dia:"07",nome:"Semana do Brasil ★",nicho:"ecom",p:true,bras:false,ecom:true,hint:"Criada para estimular varejo em mês historicamente parado. Funciona como 'esquenta' da Black Friday. Foco em renovação de guarda-roupa e eletrônicos."},
+    {dia:"15",nome:"Dia do Cliente ★",nicho:"ambos",p:true,bras:false,ecom:true,hint:"Fidelização e reativação. Cupons exclusivos, cashback, mimos para base de clientes. WhatsApp e e-mail são os canais principais."},
+    {dia:"set/out",nome:"Boom do Projeto Verão",nicho:"estetica",p:true,bras:false,ecom:false,hint:"Agendas de estética corporal (criolipólise, bioestimuladores, drenagens) lotam. Comunicação: 'Prepare seu corpo agora para dezembro'."},
+    {dia:"22",nome:"Início da Primavera + Diagnóstico de Imagem",nicho:"ambos",p:false,bras:false,ecom:false,hint:"Moda: lançamento P/V, looks florais. Estética: 'Diagnóstico de Imagem da Estação' via visagismo — gera desejo de renovação sem desconto."},
+    {dia:"22/09",nome:"Dia da Esteticista",nicho:"estetica",p:false,bras:false,ecom:false,hint:"Mostrar tecnologia e ciência por trás dos protocolos. Bastidores de equipamentos e resultados para autoridade no Instagram."}
+  ]},
+  {mes:"Outubro",num:"10",datas:[
+    {dia:"out",nome:"Captação Lista VIP Black Friday",nicho:"ecom",p:true,bras:false,ecom:true,hint:"Consumidor BR pesquisa preços em outubro. Capte leads para lista VIP no WhatsApp antes do Black November. Prova social: mostre que seus preços são honestos."},
+    {dia:"out/nov",nome:"Alto Verão e Réveillon chegam ao Brás",nicho:"atacado",p:true,bras:true,ecom:false,hint:"Foco em brilho, branco e roupas de Réveillon. Garantir estoque em outubro para vender em nov/dez com margem."},
+    {dia:"12",nome:"Dia das Crianças ★",nicho:"moda",p:true,bras:false,ecom:true,hint:"Pico para moda infantil. O frete rápido é o maior diferencial competitivo. Atacadistas: abastecer varejo com 45 dias de antecedência."},
+    {dia:"todo mês",nome:"Outubro Rosa",nicho:"estetica",p:false,bras:false,ecom:false,hint:"Conscientização + % de vendas revertido para causa. Humaniza a marca. Engajamento alto com propósito real e transparente."},
+    {dia:"31",nome:"Halloween",nicho:"moda",p:false,bras:false,ecom:false,hint:"Fantasias, make artístico — nicho crescente no BR. Oportunidade para beleza criativa e styling temático."}
+  ]},
+  {mes:"Novembro",num:"11",datas:[
+    {dia:"01",nome:"Início do Black November ★★",nicho:"ambos",p:true,bras:false,ecom:true,hint:"No BR, a Black Friday não é mais um dia — é o mês inteiro. Ativar lista VIP WhatsApp primeiro. Prova social: bastidores do estoque e prints de pedidos."},
+    {dia:"nov",nome:"Black Beauty — Combos, não descontos",nicho:"estetica",p:true,bras:false,ecom:false,hint:"Para manter posicionamento premium: ofereça combos em vez de desconto. Ex: 'Faça o cabelo e ganhe análise de visagismo'. Protege a percepção de valor."},
+    {dia:"ult sex",nome:"Black Friday ★★",nicho:"ambos",p:true,bras:false,ecom:true,hint:"Maior data do e-commerce BR. Começa na quinta à noite e vira o fim de semana. Lives de venda, cupons VIP, comunicação de estoque limitado."},
+    {dia:"+3 dias",nome:"Cyber Monday",nicho:"ambos",p:true,bras:false,ecom:true,hint:"Foco em peças únicas que sobraram da sexta. Beleza: refil, tamanhos profissionais, kits curados. Estética: pacotes de sessões com valor especial."}
+  ]},
+  {mes:"Dezembro",num:"12",datas:[
+    {dia:"dez",nome:"Festas e Confraternizações — pico estética",nicho:"estetica",p:true,bras:false,ecom:false,hint:"Maior faturamento do ano para estética. Corte, cor, penteado, unhas. Cliente quer estar impecável para as fotos de fim de ano. Agenda lota em novembro."},
+    {dia:"25",nome:"Natal ★★",nicho:"ambos",p:true,bras:false,ecom:true,hint:"2ª maior data do varejo. Moda: looks de festa, presenteáveis. Beleza: kits, edições limitadas. 13º salário aquece o consumo. Parcelamento é decisivo."},
+    {dia:"dez",nome:"Réveillon — Nicho do Branco/Dourado",nicho:"moda",p:true,bras:false,ecom:true,hint:"Roupa de Réveillon (branco/amarelo/dourado) é nicho gigante à parte no BR. Campanha separada do Natal. Garantir estoque desde outubro."},
+    {dia:"26+",nome:"Pós-Natal / Liquidação",nicho:"moda",p:false,bras:false,ecom:false,hint:"Giro de estoque. Campanha de facilitação de troca aumenta satisfação e pode gerar nova compra."},
+    {dia:"31",nome:"Réveillon — Estética",nicho:"estetica",p:false,bras:false,ecom:false,hint:"Make de virada, nail art, skincare de ano novo. O mês mais lucrativo da estética vai até a última hora."}
+  ]}
+];
+
+function renderGrid(filtro) {
+  const grid = document.getElementById('gridMeses');
+  grid.innerHTML = '';
+  dados.forEach(mes => {
+    const df = mes.datas.filter(d => {
+      if (filtro==='todos')      return true;
+      if (filtro==='prioridade') return d.p;
+      if (filtro==='ambos')      return d.nicho==='ambos';
+      if (filtro==='ecom')       return d.ecom || d.nicho==='ecom';
+      return d.nicho===filtro;
+    });
+    if (!df.length) return;
+    const card = document.createElement('div');
+    card.className = 'mes-card';
+    card.innerHTML = `
+      <div class="mes-header"><span class="mes-nome">${mes.mes}</span><span class="mes-num">${mes.num}</span></div>
+      <div class="mes-body">
+        ${df.map(d=>`
+          <div class="data-item n-${d.nicho}${d.p?' destaque':''}">
+            <div class="data-dia">${d.dia}</div>
+            <div class="data-info">
+              <div class="data-nome">
+                ${d.nome}
+                ${d.p?'<span class="tag-prio">★ prioritária</span>':''}
+                ${d.bras?'<span class="tag-bras">Brás</span>':''}
+                ${d.ecom&&d.nicho!=='ecom'?'<span class="tag-ecom">E-com</span>':''}
+              </div>
+              <div class="data-nicho">${nichoLabel[d.nicho]}</div>
+              <div class="data-hint">${d.hint}</div>
+            </div>
+          </div>`).join('')}
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+document.querySelectorAll('.btn-filtro').forEach(btn=>{
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.btn-filtro').forEach(b=>b.classList.remove('ativo'));
+    this.classList.add('ativo');
+    renderGrid(this.dataset.filtro);
+  });
+});
+
+renderGrid('todos');
+</script>
 </body>
 </html>
